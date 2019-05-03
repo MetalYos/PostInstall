@@ -1,0 +1,84 @@
+# Entry example
+# ^
+# Name
+# package installation command (if relevant) otherwise None
+# Description (if relevant) otherwise None
+# $
+
+^
+Chromium
+sudo pacman -S chromium
+Web Browser
+&
+
+^
+Grub Customizer
+sudo pacman -S grub-customizer
+GUI for the grub config file
+$
+
+^
+Geany
+sudo pacman -S geany
+A fast and lightweight IDE
+$
+
+^
+Okular
+sudo pacman -S okular
+Universal document viewer
+$
+
+^
+Meld
+sudo pacman -S meld
+File comparison application
+$
+
+^
+KeePassX
+sudo pacman -S keepassx2
+Password manager
+$
+
+^
+Inkscape
+sudo pacman -S inkscape
+Professional vector graphics editor
+$
+
+^
+Kdenlive
+sudo pacman -S kdenlive
+Video editor application
+$
+
+^
+Vim
+sudo pacman -S vim
+Vi Improved, a highly configurable, improved version of the vi text editor
+$
+
+^
+Variety
+sudo pacman -S variety
+Wallpaper changer that automatically downloads wallpapers
+$
+
+^
+Valgrind
+sudo pacman -S valgrind
+Tool to help find memory-management problems in programs
+$
+
+^
+Orion
+https://github.com/alamminsalo/orion
+Twitch Player
+$
+
+^
+Redshift
+sudo pacman -S redshift
+Application that changes screen light temperature according to the time
+$

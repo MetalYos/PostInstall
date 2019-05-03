@@ -62,6 +62,8 @@ class AppEntryFrame(Frame):
         self.description = description
 
         self.is_installed = IntVar()
+        self.is_add_to_script = IntVar()
+        self.is_add_to_script.set(1)
         self.widgets = []
 
         self.init_ui()
@@ -101,11 +103,19 @@ class AppEntryFrame(Frame):
         temp.grid(row=2, column=1, sticky=W)
         self.widgets.append(temp)
 
-        # Create Installed Checkbutton
+        # Create right frame
+        right_frame = Frame(self)
+        right_frame.pack(side=RIGHT, padx=20)
+        # Add Installed Checkbutton to the right frame
         self.installed_checkbutton = Checkbutton(
             self, text='Installed', variable=self.is_installed, onvalue=1, offvalue=0, command=self.on_installed_changed)
-        self.installed_checkbutton.pack(side=RIGHT, padx=20)
+        self.installed_checkbutton.pack(side=TOP, expand=YES, fill=Y)
         self.widgets.append(self.installed_checkbutton)
+        # Add 'Add to Script' Checkbutton to the right frame
+        self.add_to_script_checkbutton = Checkbutton(
+            self, text='Add to Script', variable=self.is_add_to_script, onvalue=1, offvalue=0)
+        self.add_to_script_checkbutton.pack(side=TOP, expand=YES, fill=Y)
+        self.widgets.append(self.add_to_script_checkbutton)
 
     def on_installed_changed(self):
         if self.is_installed.get() == 1:
@@ -119,6 +129,7 @@ class AppEntryFrame(Frame):
         for widget in self.widgets:
             widget.configure(bg=color)
         self.installed_checkbutton.configure(activebackground=active_color)
+        self.add_to_script_checkbutton.configure(activebackground=active_color)
         self.configure(bg=color)
 
 
@@ -170,13 +181,14 @@ class MainApp(Tk):
 
     def create_installation_script(self):
         with open(self.install_script, 'w') as inst_file:
-            inst_file.write('#!/bin/bash\n\n\n')
+            inst_file.write('#!/bin/bash\n\n')
             for entry in self.entries:
-                if "pacman" in entry.pack_command:
-                    inst_file.write(f'# Installing {entry.app_name}')
+                if entry.is_add_to_script.get() == 1 and ("pacman" in entry.pack_command or "yay" in entry.pack_command):
+                    inst_file.write(f'\n# Installing {entry.app_name}')
                     if "None" not in entry.description:
                         inst_file.write(f' - {entry.description}\n')
                     inst_file.write(f'{entry.pack_command}\n')
+            print('Finished building script')
 
     def run_installation_script(self):
         if os.path.isfile(self.install_script) is False:

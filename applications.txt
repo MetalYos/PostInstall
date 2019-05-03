@@ -6,6 +6,12 @@
 # $
 
 ^
+Yay
+sudo pacman -S yay
+Yet another yogurt. Pacman wrapper and AUR helper written in go.
+$
+
+^
 Chromium
 sudo pacman -S chromium
 Web Browser
@@ -72,13 +78,19 @@ Tool to help find memory-management problems in programs
 $
 
 ^
-Orion
-https://github.com/alamminsalo/orion
-Twitch Player
-$
-
-^
 Redshift
 sudo pacman -S redshift
 Application that changes screen light temperature according to the time
+$
+
+^
+Visual Studio Code
+yay -S visual-studio-code-bin
+Advanced Text Editor (and some IDE)
+$
+
+^
+Orion
+https://github.com/alamminsalo/orion
+Twitch Player
 $
